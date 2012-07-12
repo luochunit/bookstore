@@ -41,7 +41,7 @@ public class BookEditServlet extends HttpServlet {
 		if (isbn != null) {
 			Book book = bookRepo.lookupBookById(isbn);
 			request.setAttribute("book", book);
-			request.setAttribute("pubDate", sdf.format(book.getPublishDate()));
+			request.setAttribute("pubDate", formatDate(book.getPublishDate()));
 		}
 		request.getRequestDispatcher("/WEB-INF/pages/bookedit.jsp").forward(
 				request, response);
@@ -52,6 +52,7 @@ public class BookEditServlet extends HttpServlet {
 		logger.info("post() /book");
 		String isbn = request.getParameter("isbn");
 		String title = request.getParameter("title");
+		String author = request.getParameter("author");
 		String desc = request.getParameter("desc");
 		double price = 0;
 		try {
@@ -68,7 +69,7 @@ public class BookEditServlet extends HttpServlet {
 
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
-		Book book = new Book(isbn, title, desc, price, date);
+		Book book = new Book(isbn, title, author, desc, price, date);
 		Set<ConstraintViolation<Book>> constraintViolations = validator
 				.validate(book);
 
@@ -76,11 +77,20 @@ public class BookEditServlet extends HttpServlet {
 			bookRepo.addBook(book);
 			response.sendRedirect(request.getContextPath() + "/book/");
 		} else {
+			request.setAttribute("book", book);
+			request.setAttribute("pubDate", formatDate(book.getPublishDate()));
 			request.setAttribute("errors", constraintViolations);
 			request.getRequestDispatcher("/WEB-INF/pages/bookedit.jsp")
 					.forward(request, response);
 		}
 
+	}
+
+	private String formatDate(Date date) {
+		if (date == null)
+			return null;
+
+		return sdf.format(date);
 	}
 
 }

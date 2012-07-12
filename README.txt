@@ -15,6 +15,7 @@ Project Notes
 	<fmt:formatDate/>	--	format java.util.date
 	<c:forEach/>		--	loop
 	${pageContext.request.contextPath}	--	root context
+	SiteMesh
 
 #Servlet
 	request.getRequestDispatcher(...).forward(req,resp)	--	forward request	--	save final URL

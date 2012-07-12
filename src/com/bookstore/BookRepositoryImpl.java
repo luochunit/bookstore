@@ -13,15 +13,15 @@ public class BookRepositoryImpl implements BookRepository {
 	private HashMap<String, Book> map = new HashMap<String, Book>();
 
 	public BookRepositoryImpl() {
-		map.put("SN0001", new Book("SN0001", "Little Wing", "Fabulous Book",
+		map.put("SN0001", new Book("SN0001", "Little Wing", "Hendrix", "Fabulous Book",
 				100.00, new Date()));
-		map.put("SN0002", new Book("SN0002", "War and Peace", "Great Book",
+		map.put("SN0002", new Book("SN0002", "War and Peace", "Tolsthy", "Great Book",
 				101.00, new Date()));
-		map.put("SN0003", new Book("SN0003", "1984", "Fabulous Book", 102.00,
+		map.put("SN0003", new Book("SN0003", "1984", "Jack London", "Fabulous Book", 102.00,
 				new Date()));
-		map.put("SN0004", new Book("SN0004", "Star War", "Fabulous Book",
+		map.put("SN0004", new Book("SN0004", "Star War", "Luk", "Fabulous Book",
 				103.00, new Date()));
-		map.put("SN0005", new Book("SN0005", "Neckless", "Fabulous Book",
+		map.put("SN0005", new Book("SN0005", "Neckless", "KKK", "Fabulous Book",
 				104.00, new Date()));
 	}
 
